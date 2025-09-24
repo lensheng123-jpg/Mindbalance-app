@@ -5,7 +5,7 @@ A mental wellness application built with Ionic React and Firebase that demonstra
 ## 📋 Assignment Requirements Implemented
 
 ### ✅ Task 1: Project Setup & Firebase Integration
-- Ionic React project created with `blank` template
+- Ionic React project created with `tabs` template
 - Firebase SDK installed and configured
 - Firestore database setup
 
@@ -31,4 +31,4 @@ A mental wellness application built with Ionic React and Firebase that demonstra
 
 1. **Clone the repository**
    ```bash
-https://github.com/lensheng123-jpg/mindbalance-app.git   cd mindbalance
+https://github.com/lensheng123-jpg/Mindbalance_aid.git   
