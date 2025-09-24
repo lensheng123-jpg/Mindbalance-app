@@ -27,8 +27,10 @@ A mental wellness application built with Ionic React and Firebase that demonstra
 - npm (comes with Node.js)
 - Ionic CLI (`npm install -g @ionic/cli`)
 
-### Installation
+How to run it .
+Test Your Repo
+1. Delete my local `node_modules/` folder  
+2. Run `npm install` again → make sure project still works  
+3. Run `ionic serve` → after type cd mindbalance-app to direct the folder and typeionic serve confirm everything runs clean  
 
-1. **Clone the repository**
-   ```bash
-https://github.com/lensheng123-jpg/Mindbalance_aid.git   
+

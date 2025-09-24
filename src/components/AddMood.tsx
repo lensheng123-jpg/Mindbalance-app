@@ -1,34 +1,61 @@
 // src/components/AddMood.tsx
 import { useState } from "react";
-import { IonButton, IonInput, IonItem, IonLabel } from "@ionic/react";
+import {
+  IonButton, IonInput, IonItem, IonLabel, IonGrid, IonRow, IonCol
+} from "@ionic/react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../src/firebaseConfig";
+import { db } from "../firebaseConfig";
 
-export default function AddMood() {
-  const [mood, setMood] = useState("");
+
+interface Props {
+  userId: string;
+}
+
+const moodOptions = [
+  { emoji: "😄", color: "success", label: "Happy" },
+  { emoji: "😢", color: "medium", label: "Sad" },
+  { emoji: "😡", color: "danger", label: "Angry" },
+  { emoji: "😌", color: "tertiary", label: "Calm" },
+  { emoji: "😴", color: "warning", label: "Tired" }
+];
+
+export default function AddMood({ userId }: Props) {
+  const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState("");
-
   const handleSubmit = async () => {
-    if (!mood) return;
-    await addDoc(collection(db, "mood_entries"), {
-      mood,
+    if (!selectedMood) {
+      alert("Please select a mood!");
+      return;
+    }
+    await addDoc(collection(db, "users", userId, "mood_entries"), {
+      mood: selectedMood,
       note,
       createdAt: new Date()
     });
-    setMood("");
+    setSelectedMood(null);
     setNote("");
   };
 
   return (
     <div>
-      <IonItem>
-        <IonLabel position="floating">Mood</IonLabel>
-        <IonInput
-          value={mood}
-          onIonChange={(e) => setMood(e.detail.value!)}
-          required
-        />
-      </IonItem>
+      <IonLabel>Select Your Mood</IonLabel>
+      <IonGrid>
+        <IonRow>
+          {moodOptions.map((m) => (
+            <IonCol key={m.label} size="2">
+              <IonButton
+                expand="block"
+                color={selectedMood === m.label ? m.color : "light"}
+                onClick={() => setSelectedMood(m.label)}
+              >
+                {m.emoji}
+              </IonButton>
+              <p style={{ textAlign: "center", fontSize: "12px" }}>{m.label}</p>
+            </IonCol>
+          ))}
+        </IonRow>
+      </IonGrid>
+
       <IonItem>
         <IonLabel position="floating">Note</IonLabel>
         <IonInput
@@ -36,8 +63,9 @@ export default function AddMood() {
           onIonChange={(e) => setNote(e.detail.value!)}
         />
       </IonItem>
-      <IonButton expand="block" onClick={handleSubmit}>
-        Add Mood
+
+      <IonButton expand="block" color="primary" onClick={handleSubmit}>
+        Save Mood
       </IonButton>
     </div>
   );

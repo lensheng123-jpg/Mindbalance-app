@@ -13,8 +13,8 @@ export default function Home() {
       </IonHeader>
 
       <IonContent className="ion-padding">
-        <AddMood />
-        <MoodList />
+        <AddMood userId="userId" />
+        <MoodList userId="userId" />
       </IonContent>
     </IonPage>
   );
