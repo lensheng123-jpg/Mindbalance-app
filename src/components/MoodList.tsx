@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import {
   IonCard, IonCardHeader, IonCardTitle, IonCardContent,
-  IonButton, IonSearchbar, IonSegment, IonSegmentButton, IonLabel
-} from "@ionic/react";
+  IonButton} from "@ionic/react";
 import {
   collection, onSnapshot, query, orderBy,
   updateDoc, deleteDoc, doc
@@ -32,8 +31,7 @@ const moodEmojis: Record<string, { emoji: string; color: string }> = {
 
 export default function MoodList({ userId }: Props) {
   const [moods, setMoods] = useState<MoodEntry[]>([]);
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("All");
+  const [filter] = useState("All");
 
   useEffect(() => {
         // Load cached data first
@@ -70,13 +68,10 @@ export default function MoodList({ userId }: Props) {
     await deleteDoc(docRef);
   };
 
-  // 🔎 Apply search + filter
+  // 🔎 Apply filter
   const filteredMoods = moods.filter((m) => {
-    const matchesSearch =
-      m.note?.toLowerCase().includes(search.toLowerCase()) ||
-      m.mood.toLowerCase().includes(search.toLowerCase());
     const matchesFilter = filter === "All" || m.mood === filter;
-    return matchesSearch && matchesFilter;
+    return matchesFilter;
   });
 
   return (
