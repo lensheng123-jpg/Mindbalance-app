@@ -1,4 +1,4 @@
-# MindBalance App - Assignment 2
+# MindBalance aid - Assignment 2
 
 A mental wellness application built with Ionic React and Firebase that demonstrates CRUD operations with client-side caching.
 
