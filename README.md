@@ -12,10 +12,9 @@ Firebase integration
 ## 📋 Assignment Requirements Implemented
 
 ### ✅ Task 1: Project Setup & Firebase Integration
--Ionic React project created with tabs template for ex..(ionic start mindbalance-app tabs --type=react), then cd mindbalance-app
--Firebase SDK installed and configured (npm install firebase)
--Firestore database setup
--Create .env using modern best practices (e.g., environment variables and Create to firebaseConfig.ts)
+-Ionic React project created with tabs template for ex..(ionic start mindbalance-app tabs --type=react), then cd mindbalance-app, then type(npm install firebase)
+- Fulfilled Firestore database setup
+-Create .env file using modern best practices (e.g., environment variables and Create to firebaseConfig.ts)
 
 
 ### ✅ Task 2: CRUD Functionality (Mood Entries)
