@@ -3,9 +3,9 @@ import { useState } from "react";
 import {
   IonButton, IonInput, IonItem, IonLabel, IonGrid, IonRow, IonCol
 } from "@ionic/react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-
+import storage from "../Storage";
 
 interface Props {
   userId: string;
@@ -22,16 +22,39 @@ const moodOptions = [
 export default function AddMood({ userId }: Props) {
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [note, setNote] = useState("");
+
   const handleSubmit = async () => {
     if (!selectedMood) {
       alert("Please select a mood!");
       return;
     }
-    await addDoc(collection(db, "users", userId, "mood_entries"), {
+
+    // Generate temporary ID for cache
+    const tempId = "temp_" + Date.now();
+
+    const newEntry = {
+      id: tempId,
       mood: selectedMood,
       note,
-      createdAt: new Date()
-    });
+      createdAt: new Date() // local time for cache
+    };
+
+    // 1️⃣ Save to cache immediately
+    const cacheKey = `moods_${userId}`;
+    const cached = (await storage.get(cacheKey)) || [];
+    await storage.set(cacheKey, [newEntry, ...cached]);
+
+    // 2️⃣ Add to Firestore (syncs later if offline)
+    try {
+      await addDoc(collection(db, "users", userId, "mood_entries"), {
+        mood: selectedMood,
+        note,
+        createdAt: serverTimestamp()
+      });
+    } catch (err) {
+      console.warn("Saved to cache only (offline):", err);
+    }
+
     setSelectedMood(null);
     setNote("");
   };
