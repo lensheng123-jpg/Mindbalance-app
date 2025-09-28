@@ -1,7 +1,6 @@
-
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
 
 
 // ✅ Firebase config now reads from .env file
@@ -27,4 +26,11 @@ export const db = getFirestore(app);
 // ✅ Export app (for other Firebase services later, e.g., Auth/Storage)
 export default app;
 
-
+// Enable offline persistence so Firestore queues writes and caches reads
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code === 'failed-precondition') {
+    console.warn("Persistence can only be enabled in one tab at a time.");
+  } else if (err.code === 'unimplemented') {
+    console.warn("Browser does not support persistence.");
+  }
+});
