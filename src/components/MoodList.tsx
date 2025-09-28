@@ -1,8 +1,8 @@
 // src/components/MoodList.tsx
 import { useEffect, useState } from "react";
 import {
-  IonCard, IonCardHeader, IonCardTitle, IonCardContent,
-  IonButton} from "@ionic/react";
+  IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton
+} from "@ionic/react";
 import {
   collection, onSnapshot, query, orderBy,
   updateDoc, deleteDoc, doc
@@ -34,26 +34,31 @@ export default function MoodList({ userId }: Props) {
   const [filter] = useState("All");
 
   useEffect(() => {
-        // Load cached data first
-    const cacheKey = `moods_${userId}`;
-    storage.get(cacheKey).then((cached) => {
-      if (cached) setMoods(cached);
-    });
-    // Fetch live data
-    const q = query(
-      collection(db, "users", userId, "mood_entries"),
-      orderBy("createdAt", "desc")
-    );
-    const unsub = onSnapshot(q, (snapshot) => {
+  const cacheKey = `moods_${userId}`;
+
+  // Load cached data first
+  storage.get(cacheKey).then((cached) => {
+    if (cached) setMoods(cached);
+  });
+
+  const q = query(
+    collection(db, "users", userId, "mood_entries"),
+    orderBy("createdAt", "desc")
+  );
+
+  const unsub = onSnapshot(q, (snapshot) => {
+    // If snapshot has data, update cache
+   
       const data = snapshot.docs.map(
         (doc) => ({ id: doc.id, ...doc.data() } as MoodEntry)
       );
       setMoods(data);
       storage.set(cacheKey, data);
-    });
+    
+  });
 
-    return () => unsub();
-  }, [userId]);
+  return () => unsub();
+}, [userId]);
 
   const handleUpdate = async (id: string) => {
     const newNote = prompt("Update your note:");
@@ -63,25 +68,38 @@ export default function MoodList({ userId }: Props) {
     }
   };
 
-  const handleDelete = async (id: string) => {
+ const handleDelete = async (id: string) => {
+  // Optimistically update UI
+  setMoods((prev) => prev.filter((m) => m.id !== id));
+
+  // Update cache
+  const cacheKey = `moods_${userId}`;
+  const cached = (await storage.get(cacheKey)) || [];
+  await storage.set(cacheKey, cached.filter((m: MoodEntry) => m.id !== id));
+
+  // Delete in Firestore (syncs if offline later)
+  try {
     const docRef = doc(db, "users", userId, "mood_entries", id);
     await deleteDoc(docRef);
-  };
+  } catch (err) {
+    console.warn("Delete failed (will retry when online):", err);
+  }
+};
 
-  // 🔎 Apply filter
-  const filteredMoods = moods.filter((m) => {
-    const matchesFilter = filter === "All" || m.mood === filter;
-    return matchesFilter;
-  });
+  const filteredMoods = moods.filter((m) =>
+    filter === "All" ? true : m.mood === filter
+  );
 
   return (
     <div>
-    
-      {/* Mood Cards */}
       {filteredMoods.length > 0 ? (
         filteredMoods.map((m) => {
           const moodMeta = moodEmojis[m.mood] || { emoji: "❓", color: "light" };
-          const date = new Date(m.createdAt.seconds * 1000).toLocaleString();
+
+          const date =
+            m.createdAt?.seconds
+              ? new Date(m.createdAt.seconds * 1000).toLocaleString()
+              : new Date(m.createdAt).toLocaleString();
 
           return (
             <IonCard key={m.id} color={moodMeta.color}>
@@ -110,6 +128,4 @@ export default function MoodList({ userId }: Props) {
       )}
     </div>
   );
-
- 
 }
