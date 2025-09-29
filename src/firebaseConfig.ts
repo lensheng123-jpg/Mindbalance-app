@@ -1,9 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
+import { initializeFirestore, persistentLocalCache } from "firebase/firestore";
 
-
-// ✅ Firebase config now reads from .env file
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -14,23 +12,14 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 
 console.log("Project ID:", import.meta.env.VITE_FIREBASE_PROJECT_ID);
 
-// ✅ Export Firestore instance
-export const db = getFirestore(app);
-
-// ✅ Export app (for other Firebase services later, e.g., Auth/Storage)
-export default app;
-
-// Enable offline persistence so Firestore queues writes and caches reads
-enableIndexedDbPersistence(db).catch((err) => {
-  if (err.code === 'failed-precondition') {
-    console.warn("Persistence can only be enabled in one tab at a time.");
-  } else if (err.code === 'unimplemented') {
-    console.warn("Browser does not support persistence.");
-  }
+// Initialize Firestore with persistent cache
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache() // offline persistence enabled
 });
+
+export default app;
