@@ -2,10 +2,16 @@
 
 A mental wellness application built with Ionic React and Firebase that demonstrates CRUD operations with client-side caching.
 
-Features:
-Mental health tracking
+## 🚀 Features
 
-Wellness resources
+- 📌 Add moods with emoji + notes  
+- 🗂️ View all mood entries in a clean list  
+- 🖊️ Edit and delete mood entries  
+- 🔥 Firebase Firestore integration (real-time updates)  
+- 💾 Offline caching with Ionic Storage  
+- 🔄 Automatic resync of offline entries when back online  
+- ✅ Environment variables for secure Firebase setup  
+
 
 Mindbalance-app/   # Root project folder (created by `ionic start`)
 │── src/
