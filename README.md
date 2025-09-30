@@ -7,7 +7,29 @@ Mental health tracking
 
 Wellness resources
 
-Firebase integration
+Mindbalance-app/   # Root project folder (created by `ionic start`)
+│── src/
+│   ├── firebaseConfig.ts  # 🔥 Firebase initialization (export app + db)
+│   ├── storage.ts         # 💾 Ionic Storage setup (offline cache)
+│   │
+│   ├── components/  # 🧩 Reusable UI components
+│   │   ├── AddMood.tsx   # ➕ Mood entry form (handles input + cache + Firestore)
+│   │   └── MoodList.tsx   # 📋 Displays mood cards (offline-first + sync)
+│   │
+│   └── pages/  # 📄 Full-screen views (page-level)
+│       └── Home.tsx    # 🏠 Main page → renders AddMood + MoodList
+│       └── Mindfulness.tsx     
+│   └── theme/
+│       └── App.tsx         # 🎬 App root component (loads <Home />)
+│── .env                  # 🔑 Environment variables (Firebase API keys),  #   Example: VITE_FIREBASE_API_KEY=xxxx
+├── package.json                # 📦 Dependencies & npm scripts
+├── tsconfig.json               # ⚙️ TypeScript config
+├── vite.config.ts              # ⚙️ Vite/Ionic config
+│
+└── README.md                   # 📖 Project instructions (npm install, ionic serve, etc.)
+
+
+
 
 ## 📋 Assignment Requirements Implemented
 
