@@ -68,7 +68,7 @@ How to run it .
 Test Your Repo
 1. Delete my local `node_modules/` folder  
 2. Run `npm install` again → make sure project still works  
-3. Run `ionic serve` → after type cd mindbalance-app to direct the folder and type ionic serve confirm everything runs clean  
+3. Run `ionic serve` → after typing cd mindbalance-app to direct the folder and then to type ionic serve confirm everything runs clean  
 The application will open in your browser at http://localhost:8100
 
 
