@@ -1,39 +1,60 @@
-# MindBalance aid - Assignment 2
+MindBalance App - Project Structure & Architecture
+📁 Project Overview
+MindBalance-app - A mental health tracking application built with Ionic React, TypeScript, and Firebase featuring offline-first architecture and comprehensive mood analytics.
 
-A mental wellness application built with Ionic React and Firebase that demonstrates CRUD operations with client-side caching.
+🏗️ Project Structure
+Root Level Files
+-package.json - Dependencies & npm scripts
+-tsconfig.json - TypeScript configuration
+-vite.config.ts - Vite build tool configuration
+-ionic.config.json - Ionic framework configuration
+-README.md - Project setup & development guide
+-.env - Environment variables (Firebase API keys)
 
-## 🚀 Features
+Source Code ( /src )
+Core Configuration
+-firebaseConfig.ts - Firebase initialization (exports app + db with offline cache)
+-storage.ts - Ionic Storage setup (offline persistence layer)
 
-- 📌 Add moods with emoji + notes  
-- 🗂️ View all mood entries in a clean list  
-- 🖊️ Edit and delete mood entries  
-- 🔥 Firebase Firestore integration (real-time updates)  
-- 💾 Offline caching with Ionic Storage  
-- 🔄 Automatic resync of offline entries when back online  
-- ✅ Environment variables for secure Firebase setup  
+Components (/components):
+AddMood.tsx - Mood entry form with offline-first strategy
+-Handles user input, local cache, and Firestore sync
+-Features mood selection, note input, and stress tracking
 
+MoodChart.tsx - Line chart showing mood trends over 7 days
+-Real-time data with mood scoring system (Happy=5, Angry=1)
 
-Mindbalance-app/   # Root project folder (created by `ionic start`)
-│── src/
-│   ├── firebaseConfig.ts  # 🔥 Firebase initialization (export app + db)
-│   ├── storage.ts         # 💾 Ionic Storage setup (offline cache)
-│   │
-│   ├── components/  # 🧩 Reusable UI components
-│   │   ├── AddMood.tsx   # ➕ Mood entry form (handles input + cache + Firestore)
-│   │   └── MoodList.tsx   # 📋 Displays mood cards (offline-first + sync)
-│   │
-│   └── pages/  # 📄 Full-screen views (page-level)
-│       └── Home.tsx    # 🏠 Main page → renders AddMood + MoodList
-│       └── Mindfulness.tsx     
-│   └── theme/
-│       └── App.tsx         # 🎬 App root component (loads <Home />)
-│── .env                  # 🔑 Environment variables (Firebase API keys),  #   Example: VITE_FIREBASE_API_KEY=xxxx
-├── package.json                # 📦 Dependencies & npm scripts
-├── tsconfig.json               # ⚙️ TypeScript config
-├── vite.config.ts              # ⚙️ Vite/Ionic config
-│
-└── README.md                   # 📖 Project instructions (npm install, ionic serve, etc.)
+MoodList.tsx - Displays mood cards with full CRUD operations
+-Search, filtering, real-time updates, offline sync detection
 
+MoodPie.tsx - Pie chart showing mood distribution
+-Visual proportion display with color-coded moods
+
+StressTrendChart.tsx - Line chart for stress trends
+-Daily/weekly/monthly views with aggregation logic
+
+Pages (/pages)
+Home.tsx - Main dashboard page
+-Renders all mood components and navigation
+-Central hub for mood tracking and analytics
+
+Mindfulness.tsx - Breathing exercises & meditation
+-Timer functionality for mindfulness practices
+
+App Configuration
+App.tsx - Root component with routing setup
+-Manages navigation between Home and Mindfulness pages
+main.tsx - Application entry point
+
+\Data Flow Architecture...
+User Input → AddMood Component → Local Cache → Firestore Sync → Real-time Updates → Analytics Charts
+
+Key Data Flow Steps:
+- User inputs mood data via AddMood form
+- Local cache saves for offline use
+- Online check and Firestore sync
+- Real-time listeners update components
+- Charts visualize aggregated data
 
 
 
@@ -70,6 +91,11 @@ Test Your Repo
 2. Run `npm install` again → make sure project still works  
 3. Run `ionic serve` → after typing cd mindbalance-app to direct the folder and then to type ionic serve confirm everything runs clean  
 The application will open in your browser at http://localhost:8100
+
+Platform Targets
+Web - Progressive Web App (PWA)
+iOS - Native iOS app
+Android - Native Android app
 
 
 
