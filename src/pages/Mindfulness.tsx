@@ -1,7 +1,4 @@
-import { 
-  IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, 
-  IonButtons, IonBackButton 
-} from "@ionic/react";
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonBackButton } from "@ionic/react";
 import { useState, useRef, useEffect } from "react";
 
 export default function Mindfulness() {
@@ -63,4 +60,3 @@ export default function Mindfulness() {
     </IonPage>
   );
 }
-
