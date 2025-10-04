@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  IonButton,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonAlert,
-} from "@ionic/react";
+import { IonButton, IonInput, IonItem, IonLabel, IonGrid, IonRow, IonCol, IonAlert,} from "@ionic/react";
 import { collection, addDoc, serverTimestamp, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import storage from "../Storage";
