@@ -24,7 +24,7 @@ const moodScores: Record<string, number> = {
   Angry: 1
 };
 
-export default function MoodChart({ userId }: Props) {
+export default function MoodTrendChart({ userId }: Props) {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
