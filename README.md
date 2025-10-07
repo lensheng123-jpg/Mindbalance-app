@@ -21,7 +21,7 @@ AddMood.tsx - Mood entry form with offline-first strategy
 -Handles user input, local cache, and Firestore sync
 -Features mood selection, note input, and stress tracking
 
-MoodChart.tsx - Line chart showing mood trends over 7 days
+MoodTrendChart.tsx - Line chart showing mood trends over 7 days
 -Real-time data with mood scoring system (Happy=5, Angry=1)
 
 MoodList.tsx - Displays mood cards with full CRUD operations
