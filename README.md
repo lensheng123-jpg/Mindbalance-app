@@ -17,20 +17,20 @@ Core Configuration
 -storage.ts - Ionic Storage setup (offline persistence layer)
 
 Components (/components):
-AddMood.tsx - Mood entry form with offline-first strategy
+=AddMood.tsx - Mood entry form with offline-first strategy
 -Handles user input, local cache, and Firestore sync
 -Features mood selection, note input, and stress tracking
 
-MoodTrendChart.tsx - Line chart showing mood trends over 7 days
+=MoodTrendChart.tsx - Line chart showing mood trends over 7 days
 -Real-time data with mood scoring system (Happy=5, Angry=1)
 
-MoodList.tsx - Displays mood cards with full CRUD operations
+=MoodList.tsx - Displays mood cards with full CRUD operations
 -Search, filtering, real-time updates, offline sync detection
 
-MoodPie.tsx - Pie chart showing mood distribution
+=MoodPie.tsx - Pie chart showing mood distribution
 -Visual proportion display with color-coded moods
 
-StressTrendChart.tsx - Line chart for stress trends
+=StressTrendChart.tsx - Line chart for stress trends
 -Daily/weekly/monthly views with aggregation logic
 
 Pages (/pages)
