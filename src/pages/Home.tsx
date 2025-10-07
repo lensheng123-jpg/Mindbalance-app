@@ -37,7 +37,7 @@ export default function Home({ userId }: Props) {
         </IonButton>
 
         <AddMood userId={userId} />
-        <MoodTrendChart userId={userId} />
+        <MoodChart userId={userId} />
         <MoodPie userId={userId} />
         <MoodList userId={userId} />
         <StressTrendChart userId={userId} />
