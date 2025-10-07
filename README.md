@@ -1,6 +1,6 @@
-MindBalance App - Project Structure & Architecture
+MindBalance aid app - Project Structure & Architecture
 📁 Project Overview
-MindBalance-app - A mental health tracking application built with Ionic React, TypeScript, and Firebase featuring offline-first architecture and comprehensive mood analytics.
+MindBalance aid app - A mental health tracking application built with Ionic React, TypeScript, and Firebase featuring offline-first architecture and comprehensive mood analytics.
 
 🏗️ Project Structure
 Root Level Files
