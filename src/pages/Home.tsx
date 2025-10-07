@@ -2,7 +2,7 @@ import {IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton} from "@
 import { useHistory } from "react-router-dom";
 import AddMood from "../components/AddMood";
 import MoodList from "../components/MoodList";
-import MoodChart from "../components/MoodTrendChart";
+import MoodTrendChart from "../components/MoodTrendChart";
 import MoodPie from "../components/MoodPie";
 import StressTrendChart from "../components/StressTrendChart";
 
@@ -37,7 +37,7 @@ export default function Home({ userId }: Props) {
         </IonButton>
 
         <AddMood userId={userId} />
-        <MoodChart userId={userId} />
+        <MoodTrendChart userId={userId} />
         <MoodPie userId={userId} />
         <MoodList userId={userId} />
         <StressTrendChart userId={userId} />
