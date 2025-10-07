@@ -17,6 +17,7 @@ Core Configuration
 -storage.ts - Ionic Storage setup (offline persistence layer)
 
 Components (/components):
+
 =AddMood.tsx - Mood entry form with offline-first strategy
 -Handles user input, local cache, and Firestore sync
 -Features mood selection, note input, and stress tracking
