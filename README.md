@@ -59,14 +59,14 @@ Key Data Flow Steps:
 
 
 
-## 📋 Assignment Requirements Implemented
+## 📋 Assignment 2 Requirements Implemented
 
 ### ✅ Task 1: Project Setup & Firebase Integration
 Project Initialization:
 Created an Ionic React project using the tabs template:
 ionic start mindbalance-app tabs --type=react
 Then navigated to the project directory and installed Firebase.
-cd mindbalance-app
+cd mindbalance-app->
 npm install firebase
 
 Firebase Setup:
