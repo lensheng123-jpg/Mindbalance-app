@@ -125,7 +125,6 @@ The application will open in your browser at http://localhost:8100
 
 Platform Targets
 Web - Progressive Web App (PWA)
-iOS - Native iOS app
 Android - Native Android app
 
 
