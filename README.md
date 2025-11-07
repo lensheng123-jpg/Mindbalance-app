@@ -100,7 +100,7 @@ Then created a reusable Storage.ts utility module.
 
 Caching Logic:
 Goal: Ensure fast load times and offline access to previously fetched data.
-Modified MoodList.tsx to:
+Updated MoodList.tsx included has these components:
 Load cached mood data first (instant display).
 Fetch live data from Firestore afterward and synchronize changes.
 Maintain consistency between local cache and remote database.
