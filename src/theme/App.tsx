@@ -5,11 +5,11 @@ import Home from "../pages/Home";
 import Mindfulness from '../pages/Mindfulness';
 import "@ionic/react/css/core.css";
 import React from "react";
+/* Core CSS required for Ionic components to work properly */
+import "@ionic/react/css/core.css";
 
 setupIonicReact();
 
-/* Core CSS required for Ionic components to work properly */
-import "@ionic/react/css/core.css";
 
 const userId = "your-user-id"; // Replace with actual user ID or logic
 
