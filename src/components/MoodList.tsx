@@ -72,7 +72,6 @@ if (cached) {
 const pendingEntries = cached.filter((entry: any) => entry._pending && !entry._synced);
 if (pendingEntries.length > 0 && navigator.onLine) {
 console.log(`${pendingEntries.length} entries pending sync`);
-// You can add auto-sync logic here if needed
 }
 }
 };
